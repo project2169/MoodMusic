@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style type="text/css">
+      /* nav bar */
+      .nav-pills .pills-1 .nav-link:not(.active) {
+        background-color: white;
+        color: blue;
+      }
+
+      .nav-pills .pills-2 .nav-link:not(.active) {
+        background-color: white;
+        color: blue;
+      }
+
+      .nav-pills .pills-3 .nav-link:not(.active) {
+         background-color: white;
+         color: blue;
+      }
+      .nav-pills .pills-1 .nav-link {
+        background-color: white;
+        color: black;
+      }
+
+      .nav-pills .pills-2 .nav-link {
+        background-color: white;
+        color: black;
+      }
+
+      .nav-pills .pills-3 .nav-link {
+        background-color: white;
+        color: black;
+      }
+      .dot1 {
+        height: 155px;
+        width: 155px;
+        background-image: url("/music player/dark-light-musicplayer-master/circle-images/alan-walker-1.jpg");
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dot2 {
+        height: 155px;
+        width: 155px;
+        background-image: url("/music player/dark-light-musicplayer-master/circle-images/a.jfif");
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dot3 {
+        height: 155px;
+        width: 155px;
+        background-image: url("/music player/dark-light-musicplayer-master/circle-images/c.jfif");
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dot4 {
+        height: 155px;
+        width: 155px;
+        background-image: url("/music player/dark-light-musicplayer-master/circle-images/t.jfif");
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dot5 {
+        height: 155px;
+        width: 155px;
+        background-image: url("/music player/dark-light-musicplayer-master/circle-images/e.jfif");
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dot6 {
+        height: 155px;
+        width: 155px;
+        background-image: url("/music player/dark-light-musicplayer-master/circle-images/O.jfif");
+        border-radius: 50%;
+        display: inline-block;
+      }
+      /* dark mode */
+      input[type="checkbox"]{
+        -webkit-appearance:none;
+        visibility: hidden;
+        display: none;
+      }
+      .check{
+        position: relative;
+        display: block;
+        width: 40px;
+        height: 20px;
+        background: black;
+        margin-top: 23%;
+        margin-left: 50%;
+        cursor: pointer;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: ease-in 0.5s;
+      }
+      input[type="checkbox"]:checked ~ .check{
+        background: #fff;
+        box-shadow: 0 0 0 4200px black;
+      }
+      .check:before{
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        background: white;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transition: 0.5s;
+      }
+      input[type="checkbox"]:checked ~ .check:before{
+        transform: translate(-50px);
+      }
+      .check:after{
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        background: black;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transition: 0.5s;
+        transform: translate(50px);
+      }
+      input[type="checkbox"]:checked ~ .check:after{
+        transform: translate(0px);
+      }
+      .check ~ .card:before{
+        background: white;
+      }
+      .check ~ .card:after{
+        background: black;
+      }
+    </style>
+
+    <title></title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <section class="mt-1">
+    <ul class="nav nav-pills mb-3 border" id="pills-tab" role="tablist" >
+      <li class="nav-item" role="presentation">
+        <a class="navbar-brand" href="#">  
+            <!-- Add logo with size of 90*80 -->
+            <img src= "http://ixd.prattsi.org/wp-content/uploads/2017/01/apple_music_logo_by_mattroxzworld-d982zrj.png"
+            width="70" height="50" alt=""> Mood Music
+        </a>
+      </li>
+      <li class="nav-item pills-1" role="presentation">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" style="height: 50px; width: 70px;">Home</a>
+      </li>
+      <li class="nav-item pills-2" role="presentation">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" style="height: 50px; width: 70px;">Browse</a>
+      </li>
+      <li class="nav-item pills-3" role="presentation">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" style="height: 50px; width: 70px;">AI </a>
+      </li>
+      <li>
+        <label>
+        <input type="checkbox">
+        <span class="check"></span>
+        </label>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+  </ol>
+  <!-- slider -->
+  <h1>Trending Now</h1>
+  <div class="carousel-inner">
+    <div class="carousel-item active row">
+      <div class="row">
+        <div class="col-6 col-md-4">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\perfect.jpg" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>Perfect</h1>
+          <div class="card-text">
+            Ed sheeran
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-6 col-md-4">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\Believer.jpg" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>Believer</h1>
+          <div class="card-text">
+            Imagine Dragons
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-md-4 d-md-block d-none">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\senorita.jpg" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>Senorita</h1>
+          <div class="card-text">
+            Shawn Mendes, Camila Cabelo
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row">
+        <div class="col-6 col-md-4">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\folklore.jpg" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>Cardigan</h1>
+          <div class="card-text">
+            Taylor Swift
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-6 col-md-4">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\stuck-with-You.png" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>Stuck With You</h1>
+          <div class="card-text">
+            Ariana Grande , Justin Bieber
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-md-4 d-md-block d-none">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\yummy.jpg" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>Yummy</h1>
+          <div class="card-text">
+            Justin Bieber
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row">
+        <div class="col-6 col-md-4">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\dynamite.png" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>Dynamite</h1>
+          <div class="card-text">
+            BTS
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-6 col-md-4">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <img src="\music player\dark-light-musicplayer-master\images\dont-start-now.jpg" class="card-img-top" style="width: 300px; height: 300px;">
+        </div>
+        <div class="card-body">
+          <h1>dont start now</h1>
+          <div class="card-text">
+            Dua lipa
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-md-4 d-md-block d-none">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div style="text-align: center;">
+        <a href="\music player\dark-light-musicplayer-master\index.html">
+        <img src="\music player\dark-light-musicplayer-master\images\Memories.jpg" class="card-img-top" style="width: 300px; height: 300px;">
+        </a>
+        </div>
+        <div class="card-body">
+          <h1>Memories</h1>
+          <div class="card-text">
+             Maroon 5
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+      <!-- artist circles -->
+      <h1 style="margin-left: 15%;">Artists</h1>
+      <div class="card" style="margin-right: 12%; margin-left: 12%; border: none;">
+      <div class="wpb_wrapper">
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <span class="dot1"></span>
+        </div> 
+        <div class="col-lg-4">
+          <span class="dot2"></span>
+        </div> 
+        <div class="col-lg-4">
+          <span class="dot3"></span>
+        </div>         
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <h4>Alan Walker</h4>
+        </div> 
+        <div class="col-lg-4">
+          <h4>Ariana Grande</h4>
+        </div> 
+        <div class="col-lg-4">
+          <h4>Charlie Puth</h4>
+        </div>         
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <span class="dot4"></span>
+        </div> 
+        <div class="col-lg-4">
+          <span class="dot5"></span>
+        </div> 
+        <div class="col-lg-4">
+          <a href="list-selena.html">
+          <span class="dot6"></span>
+          </a>
+        </div>         
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <h4>Taylor Swift</h4>
+        </div> 
+        <div class="col-lg-4">
+          <h4>Ed sheeran</h4>
+        </div> 
+        <div class="col-lg-4">
+          <h4>Selena Gomez</h4>
+        </div>         
+      </div>
+      </div>
+      </div>
+      </div>
+      <h1 style="margin-left: 13%;" class="mt-3">New Songs</h1>
+      <div class="container mt-3">
+            <div class="row">
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\franchise.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Franchise<br><small>Travis scott</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\better.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Better<br><small>ZAYN</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\courage.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Courange To Change<br><small>sia</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\holy.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Holy<br><small>Justin Bieber</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\king.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    King Of The Fall<br><small>The weekend</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\ok.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    OK Not To Be OK<br><small>Marshmello, Demi Lovato</small>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row mt-2">
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\wild-life.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Wild Life<br><small>One Republic</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\business.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    The Business<br><small>Tiësto</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\after.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    After School EP<br><small>Melanie Martinez </small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\heaven.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Heaven & Hell<br><small>Ava Max</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\images\dynamite.png" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Dynamite<br><small>BTS</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\baggin.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Baggin'<br><small>Marshmello, 42 Dugg </small>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <h1 style="margin-left: 13%;" class="mt-2">Top Music Charts</h1>
+            <div class="container mt-3">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="card">
+                  <a href="trending-today-charts.html">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\mood-trending.jpg" width="150" height="150" class="card-img-top"></a>
+                  <div class="card-body">
+                    Trending Today
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\englishchartbuster.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English Chartbuster
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\EDM-TOP.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    EDM TOP 40
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\International-Charts.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    International Charts
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 00's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 00's
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 1990's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 1990's
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 80's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 80's
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 70's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 70's
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h1 style="margin-left: 13%;" class="mt-2">Top Playlists</h1>
+              <div class="container mt-3">
+                    <div class="row">
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\2020 Chartbuster.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            2020 Chartbuster
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\English 1973.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            English 1973
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Fresh R&B.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Fresh R&B
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Indiependent- India.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Indiependent- India
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\K-POP.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Hello K-POP 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Latest Latin.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Latest Latin
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Let's Play halsey.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Let's Play halsey 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\new music weekend.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            new music this weekend 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Rock of new ages.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Rock of new ages
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Sexy Dance Workout.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Sexy Dance Workout 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\The sound of the afrro beat.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            The sound of the afrro beat
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Viral Hits.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Viral Hits
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+      </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div style="margin-left: 15%; margin-right: 10%;">
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">New Releases</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Charts</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Top Playlists</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h1 class="mt-2">New Songs</h1>
+            <div class="container mt-3">
+            <div class="row">
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\franchise.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Franchise<br><small>Travis scott</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\better.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Better<br><small>ZAYN</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\courage.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Courange To Change<br><small>sia</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\holy.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Holy<br><small>Justin Bieber</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\king.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    King Of The Fall<br><small>The weekend</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\ok.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    OK Not To Be OK<br><small>Marshmello, Demi Lovato</small>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row mt-2">
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\wild-life.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Wild Life<br><small>One Republic</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\business.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    The Business<br><small>Tiësto</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\after.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    After School EP<br><small>Melanie Martinez </small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\heaven.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Heaven & Hell<br><small>Ava Max</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\images\dynamite.png" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Dynamite<br><small>BTS</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\newsongs-img\baggin.jfif" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Baggin'<br><small>Marshmello, 42 Dugg </small>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <h1 class="mt-2">Top Music Charts</h1>
+            <div class="container mt-3">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\mood-trending.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    Trending Today
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\englishchartbuster.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English Chartbuster
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\EDM-TOP.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    EDM TOP 40
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\International-Charts.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    International Charts
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 00's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 00's
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 1990's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 1990's
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 80's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 80's
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="\music player\dark-light-musicplayer-master\music-charts-images\English 70's.jpg" width="150" height="150" class="card-img-top">
+                  <div class="card-body">
+                    English 70's
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <h1 class="mt-3">Top Playlists</h1>
+              <div class="container mt-3">
+                    <div class="row">
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\2020 Chartbuster.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            2020 Chartbuster
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\English 1973.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            English 1973
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Fresh R&B.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Fresh R&B
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Indiependent- India.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Indiependent- India
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\K-POP.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Hello K-POP 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Latest Latin.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Latest Latin
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Let's Play halsey.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Let's Play halsey 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\new music weekend.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            new music this weekend 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Rock of new ages.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Rock of new ages
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Sexy Dance Workout.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Sexy Dance Workout 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\The sound of the afrro beat.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            The sound of the afrro beat
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="card">
+                          <img src="\music player\dark-light-musicplayer-master\English music Playlist\Viral Hits.jpg" width="150" height="150" class="card-img-top">
+                          <div class="card-body">
+                            Viral Hits
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">login</div>
+    </div>
+    </section>
+    <!-- footer -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
