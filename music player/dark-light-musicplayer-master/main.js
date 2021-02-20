@@ -4,10 +4,10 @@
     
     //Initialization Of Array of Music, Title , Poster Image , Artists
 	dir = "music/";
-    playlist = ["Memories","Hymn-For-The-Weekend","Believer","We-Dont-Talk-Anymore","Senorita","Perfect"];
-    title = ["Memories","Hymn For The Weekend","Believer","We Don't Talk Anymore","Senorita","Perfect"];
-    poster = ["images/Memories.jpg","images/alan-walker.jpg","images/Believer.jpg","images/we-don't-talk-anymore.jpg","images/senorita.jpg","images/perfect.jpg"];
-    artists = ["Maroon 5 - Memories","Alan Walker","Imagine Dragons - Believer","Charlie Puth - (feat. Selena Gomez)","Shawn Mendes – Senorita Ft. Camila Cabello","Perfect - Ed Sheeran"];
+    playlist = ["Mere-Mehboob-Qayamat-Hoti","Naah","Phir-Mohabbat"];
+    title = ["Mere Mehboob Qayamat Hogi","Naah","Phir Mohabbat"];
+    poster = ["images/sanam.jfif","images/harddy.jfif","images/arijit.jfif"];
+    artists = ["Sanam Puri","Harddy Sandhu","Arijit Singh"];
     playlist_index = 0;
 
     //Used to run on every browser
