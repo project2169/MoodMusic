@@ -23,6 +23,12 @@ r1=np.argmax(rslt)
 print(r1)
 
 if r1 == 0:
-	print("Happy")
+	moodvalue = "Happy"
+	maxmood_rslt = max(rslt[0])
+	print(moodvalue)
+	print(maxmood_rslt)
 elif r1 == 1:
-	print("Neutral")
+	moodvalue = "Neutral"
+	maxmood_rslt = max(rslt[0])
+	print(moodvalue)
+	print(maxmood_rslt)

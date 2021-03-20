@@ -1,6 +1,7 @@
 import os
 import pathlib
 import numpy as np
+import random
 import tensorflow as tf
 from tensorflow.keras.layers.experimental.preprocessing import Rescaling
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization, InputLayer
@@ -23,16 +24,23 @@ r1=np.argmax(rslt)
 print(r1)
 
 if r1 == 0:
-	print("1-10")
+	agevalue = random.randint(1, 10)
+	print(agevalue)
 elif r1 == 1:
-	print("11-20")
+	agevalue = random.randint(11, 20)
+	print(agevalue)
 elif r1 == 2:
-	print("21-30")
+	agevalue = random.randint(21, 30)
+	print(agevalue)
 elif r1 == 3:
-	print("31-40")
+	agevalue = random.randint(31, 40)
+	print(agevalue)
 elif r1 == 4:
-	print("41-50")
+	agevalue = random.randint(41, 50)
+	print(agevalue)
 elif r1 == 5:
-	print("51-60")
+	agevalue = random.randint(51, 60)
+	print(agevalue)
 elif r1 == 6:
-	print("60+")
+	agevalue = random.randint(61, 100)
+	print(agevalue)

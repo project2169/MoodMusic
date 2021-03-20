@@ -23,6 +23,12 @@ r1=np.argmax(rslt)
 print(r1)
 
 if r1 == 0:
-	print("Female")
+	gendervalue = "Female"
+	maxgender_rslt = max(rslt[0])
+	print(gendervalue)
+	print(maxgender_rslt)
 elif r1 == 1:
-	print("Male")
+	gendervalue = "Male"
+	maxgender_rslt = max(rslt[0])
+	print(gendervalue)
+	print(maxgender_rslt)
