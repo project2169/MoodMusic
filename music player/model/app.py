@@ -120,8 +120,9 @@ def home():
 	print("songs is: ")
 	song = df['Song Names'][test_index]
 	print(song)
+	datanew = "S:/Mood Music/MoodMusic/music player/dark-light-musicplayer-master/index.html";
 
-	return render_template('after.html', data=song)
+	return render_template('song_temp.html', data=song)
 
 if __name__ == "__main__":
 	app.run(debug=True)
