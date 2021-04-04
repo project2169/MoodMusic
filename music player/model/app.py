@@ -4,6 +4,14 @@ import numpy as np
 from tensorflow.keras.preprocessing import image 
 import random
 import pandas as pd
+from resizer import detect_faces
+
+import dlib
+from PIL import Image
+import skimage
+from skimage import io
+import cv2
+import os
 
 df = pd.read_csv('song_test.csv')
 
@@ -19,7 +27,41 @@ def h():
 
 @app.route('/predict', methods=['POST'])
 def home():
-	img_pred = image.load_img('../moodmodel/output_as.jfif', target_size=(48, 48))
+<<<<<<< HEAD
+	img_pred = image.load_img('../moodmodel/local_stg/output.jpg', target_size=(48, 48))
+=======
+	path='../local_stg'
+	for i in os.listdir(path):
+    
+    	# Load image
+	    img_path = path+'/'+i
+	    dummy = io.imread(img_path)
+
+	    # Detect faces
+	    detected_faces = detect_faces(dummy)
+
+	    # Crop faces 
+	    for n, face_rect in enumerate(detected_faces):
+	        
+	        face = Image.fromarray(dummy).crop(face_rect)
+	    
+	        face.save('../moodmodel/local_stg/output.jpg')     # cropped is the folder in which the cropped faces will be saved.
+
+	path1='../moodmodel/local_stg/output.jpg'
+
+	img=cv2.imread(path1)
+
+	width=200
+	height=200
+
+	imgR=cv2.resize(img,(width,height))
+	print(imgR.shape)
+
+	cv2.imwrite('../moodmodel/local_stg/output.jpg', imgR)
+
+	cv2.waitKey(0)
+	img_pred = image.load_img('../moodmodel/local_stg/output.jpg', target_size=(48, 48))
+>>>>>>> 8aa8c7e0dfd34f895d0a35bb9525b48aea75d2fa
 	img_pred = image.img_to_array(img_pred)
 	img_pred = np.expand_dims(img_pred, axis=0)
 	age_rslt = agemodel.predict(img_pred)
