@@ -913,8 +913,8 @@
     <script>
         // CAMERA SETTINGS.
         Webcam.set({
-            width: 220,
-            height: 190,
+            width: 600,
+            height: 400,
             image_format: 'jpeg',
             jpeg_quality: 100
         });
@@ -930,7 +930,7 @@
         // DOWNLOAD THE IMAGE.
         downloadImage = function (name, datauri) {
             var a = document.createElement('a');
-            a.setAttribute('download', name + '.png');
+            a.setAttribute('download', name + '.jpg');
             a.setAttribute('href', datauri);
             a.click();
         }

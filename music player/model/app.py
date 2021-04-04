@@ -19,7 +19,7 @@ def h():
 
 @app.route('/predict', methods=['POST'])
 def home():
-	img_pred = image.load_img('../moodmodel/output.jfif', target_size=(48, 48))
+	img_pred = image.load_img('../moodmodel/output_as.jfif', target_size=(48, 48))
 	img_pred = image.img_to_array(img_pred)
 	img_pred = np.expand_dims(img_pred, axis=0)
 	age_rslt = agemodel.predict(img_pred)
