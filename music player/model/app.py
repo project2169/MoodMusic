@@ -27,9 +27,6 @@ def h():
 
 @app.route('/predict', methods=['POST'])
 def home():
-<<<<<<< HEAD
-	img_pred = image.load_img('../moodmodel/local_stg/output.jpg', target_size=(48, 48))
-=======
 	path='../local_stg'
 	for i in os.listdir(path):
     
@@ -61,7 +58,6 @@ def home():
 
 	cv2.waitKey(0)
 	img_pred = image.load_img('../moodmodel/local_stg/output.jpg', target_size=(48, 48))
->>>>>>> 8aa8c7e0dfd34f895d0a35bb9525b48aea75d2fa
 	img_pred = image.img_to_array(img_pred)
 	img_pred = np.expand_dims(img_pred, axis=0)
 	age_rslt = agemodel.predict(img_pred)
@@ -134,7 +130,7 @@ def home():
 	print(user_test_arr)
 
 	result =[]
-	for x in range(44):
+	for x in range(74):
 		data1 = df['neutral'][x].tolist()
 		#print(data1)
 		data2 = df['happy'][x].tolist()
@@ -163,7 +159,11 @@ def home():
 	song = df['Song Names'][test_index]
 	print(song)
 	datanew = "S:/Mood Music/MoodMusic/music player/dark-light-musicplayer-master/index.html";
-
+	dir = '../local_stg'
+	for f in os.listdir(dir):
+		os.remove(os.path.join(dir, f))
+    	
+	
 	return render_template('song_temp.html', data=song)
 
 if __name__ == "__main__":
