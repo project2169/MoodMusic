@@ -159,6 +159,10 @@ def home():
 	song = df['Song Names'][test_index]
 	print(song)
 	datanew = "S:/Mood Music/MoodMusic/music player/dark-light-musicplayer-master/index.html";
+	dir = '../local_stg'
+	for f in os.listdir(dir):
+		os.remove(os.path.join(dir, f))
+    	
 
 	return render_template('song_temp.html', data=song)
 
