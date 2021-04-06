@@ -123,7 +123,7 @@ def home():
 		agevalue = random.randint(51, 60)
 		print(agevalue)
 	elif r3 == 6:
-		agevalue = random.randint(61, 100)
+		agevalue = random.randint(61, 62)
 		print(agevalue)
 
 	user_test_arr = [user_neutral_data, user_happy_data, agevalue, user_male_data, user_female_data]

@@ -14,7 +14,7 @@ def detect_faces(image):
     # Run detector and get bounding boxes of the faces on image.
     detected_faces = face_detector(image, 1)
     face_frames = [(x.left()-10, x.top()-10,
-                    x.right()+10, x.bottom()+30) for x in detected_faces]
+                    x.right()+10, x.bottom()+20) for x in detected_faces]
 
     return face_frames
 
