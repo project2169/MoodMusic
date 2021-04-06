@@ -130,7 +130,7 @@ def home():
 	print(user_test_arr)
 
 	result =[]
-	for x in range(44):
+	for x in range(74):
 		data1 = df['neutral'][x].tolist()
 		#print(data1)
 		data2 = df['happy'][x].tolist()
@@ -163,7 +163,6 @@ def home():
 	for f in os.listdir(dir):
 		os.remove(os.path.join(dir, f))
     	
-
 	return render_template('song_temp.html', data=song)
 
 if __name__ == "__main__":
